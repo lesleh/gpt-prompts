@@ -28,7 +28,9 @@
     "build:cjs": "tsc",
     "build:esm": "tsc -p tsconfig.esm.json",
     "start": "nodemon --exec ts-node src/index.ts",
-    "prepack": "pnpm build"
+    "prepack": "pnpm build",
+    "test": "vitest",
+    "check-types": "tsc --noEmit"
   },
   "devDependencies": {
     "@microsoft/api-extractor": "^7.34.4",
@@ -36,7 +38,8 @@
     "del-cli": "^5.0.0",
     "nodemon": "^2.0.22",
     "ts-node": "^10.9.1",
-    "typescript": "^5.0.3"
+    "typescript": "^5.0.3",
+    "vitest": "^0.29.8"
   },
   "dependencies": {
     "openai": "^3.2.1"
