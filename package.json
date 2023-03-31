@@ -17,10 +17,17 @@
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "scripts": {
-    "build": "tsc",
-    "start": "nodemon --exec ts-node src/index.ts"
+    "clean": "del dist",
+    "pristine": "git clean -xdf && git reset --hard",
+    "build": "pnpm clean && concurrently -g npm:build:*",
+    "build:cjs": "tsc",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "start": "nodemon --exec ts-node src/index.ts",
+    "prepack": "pnpm build"
   },
   "devDependencies": {
+    "concurrently": "^8.0.1",
+    "del-cli": "^5.0.0",
     "nodemon": "^2.0.22",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.3"
