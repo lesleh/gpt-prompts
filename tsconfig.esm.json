@@ -4,5 +4,8 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "outDir": "dist/esm",
+    "declarationDir": "dist/types",
+    "declaration": true,
+    "declarationMap": true,
   }
 }
