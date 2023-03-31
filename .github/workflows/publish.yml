@@ -6,6 +6,7 @@ name: Node.js Package
 on:
   release:
     types: [created]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -15,7 +16,12 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - run: pnpm install --frozen-lockfile
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 8
+          run_install: true
       - run: pnpm build
 
   publish-gpr:
@@ -29,8 +35,12 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-          registry-url: https://npm.pkg.github.com/
-      - run: pnpm install --frozen-lockfile
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 8
+          run_install: true
       - run: pnpm build
       - run: npm publish
         env:
