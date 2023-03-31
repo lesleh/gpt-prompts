@@ -30,10 +30,12 @@
     "start": "nodemon --exec ts-node src/index.ts",
     "prepack": "pnpm build",
     "test": "vitest",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "coverage": "vitest run --coverage"
   },
   "devDependencies": {
     "@microsoft/api-extractor": "^7.34.4",
+    "@vitest/coverage-c8": "^0.29.8",
     "concurrently": "^8.0.1",
     "del-cli": "^5.0.0",
     "nodemon": "^2.0.22",

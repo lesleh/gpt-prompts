@@ -5,3 +5,6 @@ dist
 # Temporarily exclude API reports
 etc/gpt-prompts.api.md
 temp
+
+# Vitest test files
+coverage
