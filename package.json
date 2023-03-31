@@ -16,6 +16,10 @@
   "license": "MIT",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "clean": "del dist",
     "pristine": "git clean -xdf && git reset --hard",
