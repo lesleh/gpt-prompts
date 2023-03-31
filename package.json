@@ -1,5 +1,5 @@
 {
-  "name": "gpt-prompts",
+  "name": "@lesleh/gpt-prompts",
   "version": "0.1.0",
   "description": "Collection of prompts to use with GPT Chat API",
   "keywords": [
