@@ -24,8 +24,8 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
           cache: 'pnpm'
       - run: pnpm install --frozen-lockfile
-      # TODO: Add tests
-      - run: pnpm build
+      - run: pnpm test
+      - run: pnpm check-types
 
   publish-gpr:
     needs: build
