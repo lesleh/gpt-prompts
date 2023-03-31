@@ -30,6 +30,7 @@
     "prepack": "pnpm build"
   },
   "devDependencies": {
+    "@microsoft/api-extractor": "^7.34.4",
     "concurrently": "^8.0.1",
     "del-cli": "^5.0.0",
     "nodemon": "^2.0.22",
