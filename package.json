@@ -21,9 +21,7 @@
     "dist",
     "src"
   ],
-  "bin": {
-    "gpt-prompts": "dist/cjs/cli.js"
-  },
+  "bin": "dist/cjs/cli.js",
   "scripts": {
     "clean": "del dist",
     "pristine": "git clean -xdf && git reset --hard",
