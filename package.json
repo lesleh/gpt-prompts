@@ -50,6 +50,8 @@
     "vitest": "^0.29.8"
   },
   "dependencies": {
+    "@types/inquirer": "^9.0.3",
+    "inquirer": "^9.1.5",
     "openai": "^3.2.1"
   },
   "publishConfig": {
