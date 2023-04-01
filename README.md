@@ -1,3 +1,6 @@
+[![Checks](https://github.com/lesleh/gpt-prompts/actions/workflows/checks.yml/badge.svg)](https://github.com/lesleh/gpt-prompts/actions/workflows/checks.yml)
+
+
 # gpt-prompts
 
 gpt-prompts is a TypeScript project that provides a collection of prompts for use with the ChatGPT API. This project defines variables that will be replaced upon request to customize the text of the prompts. It is a npm package, hosted on Github Package Registry.
