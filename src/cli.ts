@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { characterImpersonator } from "./prompts";
 import { Prompt, PromptVariable } from "./types";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
