@@ -31,7 +31,8 @@
     "prepack": "pnpm build",
     "test": "vitest",
     "check-types": "tsc --noEmit",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "lint": "eslint ."
   },
   "devDependencies": {
     "@microsoft/api-extractor": "^7.34.4",
