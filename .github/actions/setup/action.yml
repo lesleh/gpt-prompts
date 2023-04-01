@@ -1,0 +1,15 @@
+runs:
+  using: "composite"
+  steps:
+    - uses: pnpm/action-setup@v2
+      name: Install pnpm
+      id: pnpm-install
+      with:
+        version: 8
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18
+        registry-url: 'https://npm.pkg.github.com'
+        cache: 'pnpm'
+    - run: pnpm install --frozen-lockfile
+      shell: bash
