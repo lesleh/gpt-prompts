@@ -1,3 +1,9 @@
+inputs:
+  npm-registry:
+    description: 'The npm registry to use'
+    required: false
+    default: 'https://registry.npmjs.org'
+
 runs:
   using: "composite"
   steps:
@@ -9,7 +15,7 @@ runs:
     - uses: actions/setup-node@v3
       with:
         node-version: 18
-        registry-url: 'https://npm.pkg.github.com'
+        registry-url: ${{ inputs.npm-registry }}
         cache: 'pnpm'
     - run: pnpm install --frozen-lockfile
       shell: bash
