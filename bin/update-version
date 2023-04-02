@@ -26,6 +26,7 @@ if [ -z "$1" ]; then
 fi
 
 SPECIFIER=$1
+CURRENT_VERSION=$(node -p "require('./package.json').version")
 BRANCH_NAME="release/$CURRENT_VERSION"
 
 # Check if the specifier is one of major/minor/patch
@@ -33,9 +34,6 @@ if [ "$SPECIFIER" != "major" ] && [ "$SPECIFIER" != "minor" ] && [ "$SPECIFIER" 
     echo "The specifier must be one of major/minor/patch."
     exit 1
 fi
-
-# Get the current version
-CURRENT_VERSION=$(node -p "require('./package.json').version")
 
 # Delete the release branch if it exists
 if git show-ref --verify --quiet "refs/heads/$BRANCH_NAME"; then
