@@ -2,6 +2,13 @@ import { ChatCompletionRequestMessage } from "openai";
 import { tofu } from "./tofu";
 import { Prompt, PromptResult } from "./types";
 
+/**
+ * Parses the variables in a prompt and returns the parsed variables.
+ * @param prompt - the prompt to parse
+ * @param providedVariables - the variables to use in the prompt
+ * @returns the parsed variables
+ * @public
+ */
 export function parsePromptVariables(
   prompt: Pick<Prompt, "variables">,
   providedVariables: Record<string, string>
@@ -19,6 +26,13 @@ export function parsePromptVariables(
   return output;
 }
 
+/**
+ * Parses a prompt and returns the parsed prompt.
+ * @param prompt - the prompt to parse
+ * @param variables - the variables to use in the prompt
+ * @returns the parsed prompt result
+ * @public
+ */
 export function parsePrompt(
   prompt: Prompt,
   variables: Record<string, string>

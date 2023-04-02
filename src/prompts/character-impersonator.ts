@@ -1,5 +1,9 @@
 import type { Prompt } from "../types";
 
+/**
+ * Prompt to impersonate a character.
+ * @public
+ */
 export const characterImpersonator: Prompt = {
   name: "character-impersonator",
   description: "Impersonate a character",

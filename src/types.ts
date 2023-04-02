@@ -3,6 +3,10 @@ import {
   ChatCompletionResponseMessage,
 } from "openai";
 
+/**
+ * A variable in a prompt.
+ * @public
+ */
 export type PromptVariable = {
   name: string;
   type: string;
@@ -11,6 +15,10 @@ export type PromptVariable = {
   required: boolean;
 };
 
+/**
+ * A prompt definition, including the message and variables to use.
+ * @public
+ */
 export type Prompt = {
   name: string;
   description: string;
@@ -18,6 +26,10 @@ export type Prompt = {
   variables: Record<string, PromptVariable>;
 };
 
+/**
+ * The result of parsing a prompt.
+ * @public
+ */
 export type PromptResult = {
   messages: ChatCompletionResponseMessage[];
 };
