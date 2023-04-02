@@ -1,2 +1,4 @@
-export * as prompts from "./prompts";
+import * as prompts from "./prompts";
 export * from "./parser";
+
+export { prompts };
