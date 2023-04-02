@@ -25,6 +25,11 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
+    - name: Configure git
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+
     - uses: ./.github/actions/setup
 
     - name: Update package.json version
