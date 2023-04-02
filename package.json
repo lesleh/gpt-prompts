@@ -36,6 +36,7 @@
     "lint": "eslint ."
   },
   "devDependencies": {
+    "@microsoft/api-documenter": "^7.21.6",
     "@microsoft/api-extractor": "^7.34.4",
     "@typescript-eslint/eslint-plugin": "^5.57.0",
     "@typescript-eslint/parser": "^5.57.0",
