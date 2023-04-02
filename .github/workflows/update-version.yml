@@ -36,11 +36,12 @@ jobs:
     - name: Update package.json version
       id: update-version
       run: |
-        pnpm version ${{ github.event.inputs.version-specifier }}
+        pnpm version --no-git-tag-version ${{ github.event.inputs.version-specifier }}
         node -e 'console.log("version="+require("./package.json").version)' >> $GITHUB_OUTPUT
     
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v3
+      id: cpr
       with:
         title: Update version to ${{ steps.update-version.outputs.version }}
         commit-message: Update version to ${{ steps.update-version.outputs.version }}
@@ -48,3 +49,59 @@ jobs:
         branch: version-${{ steps.update-version.outputs.version }}
         base: main
         draft: false
+
+    - name: Set automerge on pull request
+      if: steps.cpr.outputs.pull-request-number != ''
+      uses:
+        actions/github-script@v3
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          github.pulls.update({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            pull_number: ${{ steps.cpr.outputs.pull-request-number }},
+            maintainer_can_modify: true,
+            draft: false,
+            auto_merge: true
+          })
+    
+    - name: Wait for PR to be merged into main
+      if: steps.cpr.outputs.pull-request-number != ''
+      uses:
+        actions/github-script@v3
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const { owner, repo } = context.repo;
+          const pull_number = ${{ steps.cpr.outputs.pull-request-number }};
+          const checkInterval = 10000;
+          let checkCount = 0;
+
+          do {
+            const { data: pullRequest } = await github.pulls.get({
+              owner,
+              repo,
+              pull_number
+            });
+            if (pullRequest.merged) {
+              break;
+            }
+            await new Promise(resolve => setTimeout(resolve, checkInterval));
+            checkCount++;
+          } while (checkCount < 10);
+
+          if (checkCount === 10) {
+            throw new Error('Timed out waiting for pull request to be merged');
+          }
+    
+    - name: Pull main
+      if: steps.cpr.outputs.pull-request-number != ''
+      run: |
+        git pull origin main
+
+    - name: Push new tag
+      if: steps.cpr.outputs.pull-request-number != ''
+      run: |
+        git tag -a ${{ steps.update-version.outputs.version }} -m "Release ${{ steps.update-version.outputs.version }}"
+        git push --tags
