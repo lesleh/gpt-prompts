@@ -51,9 +51,14 @@ jobs:
         base: main
         draft: false
 
+    
+
     - name: Enable auto-merge for PR
       if: steps.cpr.outputs.pull-request-number != ''
-      run: gh pr merge ${{ steps.cpr.outputs.pull-request-number }} --auto --rebase
+      run: |
+        gh pr close ${{ steps.cpr.outputs.pull-request-number }}
+        gh pr reopen ${{ steps.cpr.outputs.pull-request-number }}
+        gh pr merge ${{ steps.cpr.outputs.pull-request-number }} --auto --rebase
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
