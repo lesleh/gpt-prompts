@@ -50,14 +50,12 @@ jobs:
         branch: version-${{ steps.update-version.outputs.version }}
         base: main
         draft: false
-
-    
+      env:
+        GITHUB_TOKEN: ${{ secrets.PULL_REQUEST_TOKEN }}
 
     - name: Enable auto-merge for PR
       if: steps.cpr.outputs.pull-request-number != ''
       run: |
-        gh pr close ${{ steps.cpr.outputs.pull-request-number }}
-        gh pr reopen ${{ steps.cpr.outputs.pull-request-number }}
         gh pr merge ${{ steps.cpr.outputs.pull-request-number }} --auto --rebase
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
