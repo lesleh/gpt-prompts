@@ -53,6 +53,8 @@ jobs:
     - name: Enable auto-merge for PR
       if: steps.cpr.outputs.pull-request-number != ''
       run: gh pr merge ${{ steps.cpr.outputs.pull-request-number }} --auto --rebase
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
     - name: Wait for PR to be merged into main
       if: steps.cpr.outputs.pull-request-number != ''
