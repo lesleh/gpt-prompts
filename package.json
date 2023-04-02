@@ -28,6 +28,8 @@
     "build": "pnpm clean && concurrently -g npm:build:*",
     "build:cjs": "tsc",
     "build:esm": "tsc -p tsconfig.esm.json",
+    "build:api": "api-extractor run --local",
+    "build:docs": "api-documenter markdown -i temp -o docs",
     "start": "nodemon --exec ts-node src/index.ts",
     "prepack": "pnpm build",
     "test": "vitest",
