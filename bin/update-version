@@ -51,7 +51,9 @@ git push --set-upstream origin "$BRANCH_NAME" --tags
 
 # Create a pull request
 gh pr create --title "Release $CURRENT_VERSION" --body "Release $CURRENT_VERSION" --base main --head "$BRANCH_NAME"
-gh pr merge --rebase --delete-branch
+gh pr merge --rebase --delete-branch --auto
+
+# TODO: Fix tagging
 
 # Checkout the main branch
 git checkout main
