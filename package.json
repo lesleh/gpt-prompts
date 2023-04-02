@@ -25,7 +25,7 @@
   "scripts": {
     "clean": "del dist",
     "pristine": "git clean -xdf && git reset --hard",
-    "build": "pnpm clean && concurrently -g npm:build:*",
+    "build": "pnpm clean && concurrently -g npm:build:*\\(!api\\|docs\\) && pnpm build:api && pnpm build:docs",
     "build:cjs": "tsc",
     "build:esm": "tsc -p tsconfig.esm.json",
     "build:api": "api-extractor run --local",
