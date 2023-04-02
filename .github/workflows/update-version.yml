@@ -61,10 +61,11 @@ jobs:
             owner: context.repo.owner,
             repo: context.repo.repo,
             pull_number: ${{ steps.cpr.outputs.pull-request-number }},
-            maintainer_can_modify: true,
-            draft: false,
-            auto_merge: true
           })
+
+    - name: Enable auto-merge for PR
+      if: steps.cpr.outputs.pull-request-number != ''
+      run: gh pr merge ${{ steps.cpr.outputs.pull-request-number }} --auto --rebase
     
     - name: Wait for PR to be merged into main
       if: steps.cpr.outputs.pull-request-number != ''
