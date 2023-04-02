@@ -1,9 +1,11 @@
 name: Node.js Package
 
 on:
-  release:
-    types: [created]
-  workflow_dispatch:
+  push:
+    branches:
+      - main
+    tags:
+      - "v*.*.*"
 
 jobs:
   build:
@@ -14,6 +16,14 @@ jobs:
       - run: pnpm test
       - run: pnpm check-types
       - run: pnpm build
+  
+  create-release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Release
+        uses: softprops/action-gh-release@v1
 
   publish-gpr:
     needs: build
