@@ -1,4 +1,4 @@
-import type { Prompt } from "../types";
+import type { Prompt } from "../types.js";
 
 /**
  * Prompt to impersonate a character.

@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-import { characterImpersonator } from "./prompts";
-import { Prompt, PromptVariable } from "./types";
+import { characterImpersonator } from "./prompts/index.js";
+import { Prompt, PromptVariable } from "./types.js";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore - This errors for the CJS build but works for the ESM build
 import { type Question } from "inquirer";
-import { parsePrompt } from ".";
+import { parsePrompt } from "./parser.js";
 
 function convertPromptToInquirerQuestions(prompt: Prompt): Question[] {
   return Object.values(prompt.variables).map((variable: PromptVariable) => ({

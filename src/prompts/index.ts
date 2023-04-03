@@ -1,1 +1,1 @@
-export * from "./character-impersonator";
+export * from "./character-impersonator.js";
