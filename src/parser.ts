@@ -1,6 +1,25 @@
 import { ChatCompletionRequestMessage } from "openai";
 import { tofu } from "./tofu";
-import { Prompt, PromptResult } from "./types";
+import { Prompt, PromptResult, PromptVariable } from "./types";
+
+/**
+ * Parses a prompt variable and returns the parsed value.
+ *
+ * @param variableDefinition {PromptVariable} - the variable definition
+ * @param value {string} - the value to parse
+ * @returns the parsed variable value
+ *
+ * @internal
+ */
+function parsePromptVariable(
+  variableDefinition: PromptVariable,
+  value: string
+) {
+  if (variableDefinition.required && !value) {
+    throw new Error(`Missing required variable ${variableDefinition.name}`);
+  }
+  return value ?? variableDefinition.default;
+}
 
 /**
  * Parses the variables in a prompt and returns the parsed variables.
@@ -15,12 +34,10 @@ export function parsePromptVariables(
 ) {
   const output = {} as Record<string, string>;
   for (const variableName in prompt.variables) {
-    const variable = prompt.variables[variableName];
-    const providedValue = providedVariables[variableName];
-    if (variable.required && !providedValue) {
-      throw new Error(`Missing required variable ${variableName}`);
-    }
-    output[variableName] = providedValue ?? variable.default;
+    output[variableName] = parsePromptVariable(
+      prompt.variables[variableName],
+      providedVariables[variableName]
+    );
   }
 
   return output;
