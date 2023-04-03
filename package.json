@@ -1,6 +1,6 @@
 {
   "name": "@lesleh/gpt-prompts",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Collection of prompts to use with GPT Chat API",
   "keywords": [
     "openai",
