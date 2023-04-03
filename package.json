@@ -21,7 +21,7 @@
     "dist",
     "src"
   ],
-  "bin": "dist/cjs/cli.js",
+  "bin": "dist/cli.js",
   "exports": {
     ".": {
       "import": "./dist/index.js",
