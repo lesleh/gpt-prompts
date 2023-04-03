@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { parsePrompt, parsePromptVariables } from "./parser";
+import { parsePrompt, parsePromptVariables } from "./parser.js";
 
 describe("parsePromptVariables", () => {
   it("should parse variables", () => {

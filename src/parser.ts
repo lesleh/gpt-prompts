@@ -1,6 +1,6 @@
 import { ChatCompletionRequestMessage } from "openai";
-import { tofu } from "./tofu";
-import { Prompt, PromptResult, PromptVariable } from "./types";
+import { tofu } from "./tofu.js";
+import { Prompt, PromptResult, PromptVariable } from "./types.js";
 
 /**
  * Parses a prompt variable and returns the parsed value.

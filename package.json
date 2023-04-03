@@ -16,6 +16,7 @@
   "license": "MIT",
   "module": "dist/index.js",
   "types": "dist/gpt-prompts.d.ts",
+  "type": "module",
   "files": [
     "dist",
     "src"
