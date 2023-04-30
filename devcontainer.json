@@ -1,0 +1,5 @@
+{
+  "features": {
+    "ghcr.io/devcontainers-contrib/features/pnpm:2": {}
+  }
+}
