@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { characterImpersonator } from "./prompts/index.js";
+import { characterImpersonator, thingExplainer } from "./prompts/index.js";
 import { Prompt, PromptVariable } from "./types.js";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore - This errors for the CJS build but works for the ESM build
@@ -48,6 +48,7 @@ async function main() {
   const selectedPrompt = await selectPrompt([
     // ... other prompts
     characterImpersonator,
+    thingExplainer,
   ]);
 
   // Ask the user for input based on the selected prompt
